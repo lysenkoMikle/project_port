@@ -6922,6 +6922,18 @@ menuItem.forEach((item) => {
 			top: element.offsetTop - 34,
 			behavior: "smooth",
 		});
+		menu.classList.remove('active');
+      burger.classList.remove('active-burger');
+      body.classList.remove('locked');
+    
+		
+		
+
+	
+
+	
+
+	
 	});
 });
 
