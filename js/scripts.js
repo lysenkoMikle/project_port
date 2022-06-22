@@ -6871,21 +6871,53 @@ function bindModal(trigger, modal, close) {
 		(modal = document.querySelector(modal)),
 		(close = document.querySelector(close));
 
+	// calculate scrollbar width----
+
 	const body = document.body;
+	const lockPaddingVal = window.innerWidth - body.offsetWidth + "px";
+
+	function bodyLock() {
+		body.style.paddingRight = lockPaddingVal;
+	}
+
+	function bodyUnLock() {
+		body.style.paddingRight = "0px";
+	}
 
 	trigger.addEventListener("click", (e) => {
 		e.preventDefault();
 		modal.style.display = "flex";
 		body.classList.add("locked");
+		if (
+			!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent,
+			)
+		) {
+			bodyLock();
+		}
 	});
 	close.addEventListener("click", () => {
 		modal.style.display = "none";
 		body.classList.remove("locked");
+		if (
+			!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent,
+			)
+		) {
+			bodyUnLock();
+		}
 	});
 	modal.addEventListener("click", (e) => {
 		if (e.target === modal) {
 			modal.style.display = "none";
 			body.classList.remove("locked");
+			if (
+				!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent,
+				)
+			) {
+				bodyUnLock();
+			}
 		}
 	});
 }
@@ -6916,6 +6948,8 @@ function burgerMenu() {
 	const burger = document.querySelector(".burger");
 	const menu = document.querySelector(".menu");
 	const body = document.querySelector("body");
+	const closeMenu = document.querySelector(".close__menu");
+
 	burger.addEventListener("click", () => {
 		if (!menu.classList.contains("active")) {
 			menu.classList.add("active");
@@ -6927,6 +6961,13 @@ function burgerMenu() {
 			body.classList.remove("locked");
 		}
 	});
+	// close menu when clicking on an empty part
+	closeMenu.addEventListener("click", () => {
+		menu.classList.remove("active");
+		burger.classList.remove("active-burger");
+		body.classList.remove("locked");
+	});
+
 	// Вот тут мы ставим брейкпоинт навбара
 	window.addEventListener("resize", () => {
 		if (window.innerWidth > 991.98) {
@@ -6937,7 +6978,6 @@ function burgerMenu() {
 	});
 	// ----------smooth scroll------------
 	const menuItem = document.querySelectorAll(".menu__item-link");
-
 	menuItem.forEach((item) => {
 		item.addEventListener("click", function (e) {
 			e.preventDefault();

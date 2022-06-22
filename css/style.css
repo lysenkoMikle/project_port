@@ -1855,10 +1855,14 @@ button.swiper-pagination-bullet {
   .menu {
     position: fixed;
     background: #131418;
-    left: 0;
+    right: 0;
     top: 0;
     height: 100vh;
     width: 100vw;
+    display: none;
+  }
+
+  .menu .navbar__menu {
     display: none;
   }
 
@@ -1866,10 +1870,10 @@ button.swiper-pagination-bullet {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    left: 0;
+    right: 0;
     top: 0;
     height: 100vh;
-    width: 100vw;
+    width: 60%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1882,6 +1886,18 @@ button.swiper-pagination-bullet {
     -webkit-animation: fade 0.1s linear;
             animation: fade 0.1s linear;
     padding-top: 80px;
+  }
+
+  .menu.active .close__menu {
+    background: #13111162;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 
   .burger {
