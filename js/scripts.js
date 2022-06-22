@@ -6892,6 +6892,7 @@ function bindModal(trigger, modal, close) {
 
 bindModal(".modal__open", ".modal__wrapper", ".modal__close");
 
+//  ----------slider reviews------------
 const swiper = new Swiper(".swiper", {
 	spaceBetween: 20,
 	loop: true,
@@ -6910,74 +6911,62 @@ const swiper = new Swiper(".swiper", {
 	},
 });
 
-// ----------smooth scroll------------
-const menuItem = document.querySelectorAll(".menu__item-link");
-
-menuItem.forEach((item) => {
-	item.addEventListener("click", function (e) {
-		e.preventDefault();
-		const id = item.getAttribute("href");
-		const element = document.querySelector(id);
-		window.scroll({
-			top: element.offsetTop - 34,
-			behavior: "smooth",
-		});
-		menu.classList.remove('active');
-      burger.classList.remove('active-burger');
-      body.classList.remove('locked');
-    
-		
-		
-
-	
-
-	
-
-	
-	});
-});
-
 // Мобильное меню бургер
 function burgerMenu() {
-  const burger = document.querySelector('.burger')
-  const menu = document.querySelector('.menu')
-  const body = document.querySelector('body')
-  burger.addEventListener('click', () => {
-    if (!menu.classList.contains('active')) {
-      menu.classList.add('active')
-      burger.classList.add('active-burger')
-      body.classList.add('locked')
-    } else {
-      menu.classList.remove('active')
-      burger.classList.remove('active-burger')
-      body.classList.remove('locked')
-    }
-  })
-  // Вот тут мы ставим брейкпоинт навбара
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 991.98) {
-      menu.classList.remove('active')
-      burger.classList.remove('active-burger')
-      body.classList.remove('locked')
-    }
-  })
+	const burger = document.querySelector(".burger");
+	const menu = document.querySelector(".menu");
+	const body = document.querySelector("body");
+	burger.addEventListener("click", () => {
+		if (!menu.classList.contains("active")) {
+			menu.classList.add("active");
+			burger.classList.add("active-burger");
+			body.classList.add("locked");
+		} else {
+			menu.classList.remove("active");
+			burger.classList.remove("active-burger");
+			body.classList.remove("locked");
+		}
+	});
+	// Вот тут мы ставим брейкпоинт навбара
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 991.98) {
+			menu.classList.remove("active");
+			burger.classList.remove("active-burger");
+			body.classList.remove("locked");
+		}
+	});
+	// ----------smooth scroll------------
+	const menuItem = document.querySelectorAll(".menu__item-link");
+
+	menuItem.forEach((item) => {
+		item.addEventListener("click", function (e) {
+			e.preventDefault();
+			const id = item.getAttribute("href");
+			const element = document.querySelector(id);
+			window.scroll({
+				top: element.offsetTop - 34,
+				behavior: "smooth",
+			});
+			menu.classList.remove("active");
+			burger.classList.remove("active-burger");
+			body.classList.remove("locked");
+		});
+	});
 }
-burgerMenu()
+burgerMenu();
 
-
-// Вызываем эту функцию, если нам нужно зафиксировать меню при скролле.
+// --------fixed scroll-------
 function fixedNav() {
-  const nav = document.querySelector('nav')
+	const nav = document.querySelector("nav");
 
-  // тут указываем в пикселях, сколько нужно проскроллить что бы наше меню стало фиксированным
-  const breakpoint = 1
-  if (window.scrollY >= breakpoint) {
-    nav.classList.add('fixed__nav')
-  } else {
-    nav.classList.remove('fixed__nav')
-  }
+	const breakpoint = 1;
+	if (window.scrollY >= breakpoint) {
+		nav.classList.add("fixed__nav");
+	} else {
+		nav.classList.remove("fixed__nav");
+	}
 }
-window.addEventListener('scroll', fixedNav)
+window.addEventListener("scroll", fixedNav);
 
 window.addEventListener("load", windowLoadHandler, false);
 

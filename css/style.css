@@ -281,6 +281,36 @@ nav {
   color: white;
 }
 
+.menu__item-link.scroll__up {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #1378ef;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: linear 0.5s;
+  -o-transition: linear 0.5s;
+  transition: linear 0.5s;
+  display: none;
+}
+
+.menu__item-link.scroll__up:hover {
+  background: #137aef5b;
+}
+
 .burger {
   display: none;
   cursor: pointer;
@@ -1799,6 +1829,12 @@ button.swiper-pagination-bullet {
 
   .menu__item {
     margin: 0;
+  }
+
+  .menu__item-link.scroll__up {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 
   .menu__item-link {
